@@ -1,2 +1,1 @@
-# jixule.github.io
-# hexo网站
+- hexo网站
