@@ -145,6 +145,340 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jixule.github.io/2020/11/19/WindowsTerminal%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E4%B8%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jxl">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/19/WindowsTerminal%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%8F%B3%E9%94%AE%E8%8F%9C%E5%8D%95%E4%B8%AD/" class="post-title-link" itemprop="url">WindowsTerminal添加到右键菜单中</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-19 10:49:31 / 修改时间：10:49:54" itemprop="dateCreated datePublished" datetime="2020-11-19T10:49:31+08:00">2020-11-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>一、先检查一下常量</strong><br>在命令行提示符（cmd）中测试一下下面这个常量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> %USERPROFILE%</span><br></pre></td></tr></table></figure>
+
+<p>如果没有的话后面的命令需要手动替换一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//&#123;username&#125;为自己的用户名</span><br><span class="line">%USERPROFILE% =&gt; C:\Users\&#123;username&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>二、获取Windows Terminal图标并保存到相应的文件夹</strong></p>
+<p>从微软的Github上下载Windows Terminal的图标，地址如下：<code>https://raw.githubusercontent.com/microsoft/terminal/master/res/terminal.ico</code><br>然后将图标保存到%USERPROFILE%\AppData\Local\Terminal目录中。</p>
+<p><strong>三、编辑注册表文件并执行</strong></p>
+<p>新建一个注册表文件wt.reg，并编辑以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]</span><br><span class="line">@=<span class="string">&quot;Windows Terminal Here&quot;</span></span><br><span class="line"><span class="string">&quot;Icon&quot;</span>=<span class="string">&quot;%USERPROFILE%\\AppData\\Local\\Terminal\\terminal.ico&quot;</span></span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\<span class="built_in">command</span>]</span><br><span class="line">@=<span class="string">&quot;C:\\Users\\&#123;username&#125;\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe&quot;</span></span><br></pre></td></tr></table></figure>
+<p>其中username还是自己的用户名，然后执行以下就可以了。这时候就会发现右键菜单里面有了Windows Terminal here选项。</p>
+<p><strong>四、 在当前位置打开Windows Terminal。</strong></p>
+<p>上面的步骤打开的WindowsTerminal是固定目录，如果要设置为当前目录，需要修改WindowsTerminal的配置文件。<br>在打开的WindowsTerminal中点击标题栏的向下的小箭头，有个Settings，打开它。<br>找到profiles里面的defaults，在里面添加 <code>&quot;startingDirectory&quot; : &quot;.&quot;</code>就可以了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jixule.github.io/2020/11/19/%E5%B8%B8%E7%94%A8-gitignore%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jxl">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/19/%E5%B8%B8%E7%94%A8-gitignore%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">常用.gitignore文件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-19 10:47:30 / 修改时间：10:47:53" itemprop="dateCreated datePublished" datetime="2020-11-19T10:47:30+08:00">2020-11-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">node_modules</span><br><span class="line">/dist</span><br><span class="line">dist.zip</span><br><span class="line">.gitignore</span><br><span class="line">.prettierrc</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/tests/e2e/videos/</span><br><span class="line">/tests/e2e/screenshots/</span><br><span class="line"></span><br><span class="line"># local env files</span><br><span class="line">.env.local</span><br><span class="line">.env.*.local</span><br><span class="line"></span><br><span class="line"># Log files</span><br><span class="line">npm-debug.log*</span><br><span class="line">yarn-debug.log*</span><br><span class="line">yarn-error.log*</span><br><span class="line"></span><br><span class="line"># Editor directories and files</span><br><span class="line">.idea</span><br><span class="line">.vscode</span><br><span class="line">*.suo</span><br><span class="line">*.ntvs*</span><br><span class="line">*.njsproj</span><br><span class="line">*.sln</span><br><span class="line">*.sw*</span><br><span class="line"></span><br><span class="line">build/env.js</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jixule.github.io/2020/11/19/%E5%9C%A8Git%E4%B8%AD%E5%87%BA%E7%8E%B0LF%E5%92%8CCRLF%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jxl">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/19/%E5%9C%A8Git%E4%B8%AD%E5%87%BA%E7%8E%B0LF%E5%92%8CCRLF%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">在Git中出现LF和CRLF问题的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-19 10:46:07 / 修改时间：10:46:21" itemprop="dateCreated datePublished" datetime="2020-11-19T10:46:07+08:00">2020-11-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在<strong>Windows</strong>中，<strong>Git add</strong>出现 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LF will be replaced by CRLF <span class="keyword">in</span> venv/Lib/site-packages/setuptools/windows_support.py.</span><br></pre></td></tr></table></figure>
+
+<p>解决方法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global core.autocrlf <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jixule.github.io/2020/11/19/vscode%E6%A0%BC%E5%BC%8F%E5%8C%96%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jxl">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/19/vscode%E6%A0%BC%E5%BC%8F%E5%8C%96%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">vscode格式化配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-19 10:43:19 / 修改时间：10:45:30" itemprop="dateCreated datePublished" datetime="2020-11-19T10:43:19+08:00">2020-11-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>插件：</strong></p>
+<ul>
+<li>vue</li>
+<li>vetur</li>
+<li>vue-beautiful</li>
+<li>Prettier</li>
+<li>ESLint</li>
+<li>Trailing </li>
+<li>Bracket Pair Colorizer</li>
+</ul>
+<p><strong>默认格式化：vuter</strong></p>
+<p><strong>设置：</strong></p>
+  <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;vetur.validation.template&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// vscode默认启用了根据文件类型自动设置tabsize的选项</span></span><br><span class="line">  <span class="attr">&quot;editor.detectIndentation&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// 重新设定tabsize</span></span><br><span class="line">  <span class="attr">&quot;editor.tabSize&quot;</span>: <span class="number">2</span>,</span><br><span class="line">  <span class="comment">// #每次保存的时候自动格式化</span></span><br><span class="line">  <span class="attr">&quot;editor.formatOnSave&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// #去掉代码结尾的分号</span></span><br><span class="line">  <span class="attr">&quot;prettier.semi&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// #使用带引号替代双引号</span></span><br><span class="line">  <span class="attr">&quot;prettier.singleQuote&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// #让函数(名)和后面的括号之间加个空格</span></span><br><span class="line">  <span class="attr">&quot;javascript.format.insertSpaceBeforeFunctionParenthesis&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// #这个按用户自身习惯选择</span></span><br><span class="line">  <span class="attr">&quot;vetur.format.defaultFormatter.html&quot;</span>: <span class="string">&quot;js-beautify-html&quot;</span>,</span><br><span class="line">  <span class="comment">// #让vue中的js按编辑器自带的ts格式进行格式化</span></span><br><span class="line">  <span class="attr">&quot;vetur.format.defaultFormatter.js&quot;</span>: <span class="string">&quot;vscode-typescript&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;vetur.format.defaultFormatterOptions&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;js-beautify-html&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;wrap_attributes&quot;</span>: <span class="string">&quot;force-aligned&quot;</span></span><br><span class="line">      <span class="comment">// #vue组件中html代码格式化样式</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;explorer.confirmDelete&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">&quot;git.enableSmartCommit&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;workbench.colorTheme&quot;</span>: <span class="string">&quot;Monokai&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;editor.fontSize&quot;</span>: <span class="number">13</span>,</span><br><span class="line">  <span class="attr">&quot;files.autoSaveDelay&quot;</span>: <span class="number">30000</span>,</span><br><span class="line">  <span class="attr">&quot;workbench.activityBar.visible&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;workbench.statusBar.visible&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;workbench.sideBar.location&quot;</span>: <span class="string">&quot;left&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;breadcrumbs.enabled&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;editor.codeActionsOnSave&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;source.fixAll.eslint&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;octref.vetur&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;prettier.requirePragma&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;prettier.insertPragma&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者<br>  <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;vetur.validation.template&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// vscode默认启用了根据文件类型自动设置tabsize的选项</span></span><br><span class="line">    <span class="attr">&quot;editor.detectIndentation&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// 重新设定tabsize</span></span><br><span class="line">    <span class="attr">&quot;editor.tabSize&quot;</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="comment">// #去掉代码结尾的分号</span></span><br><span class="line">    <span class="attr">&quot;prettier.semi&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// #使用带引号替代双引号</span></span><br><span class="line">    <span class="attr">&quot;prettier.singleQuote&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// #让函数(名)和后面的括号之间加个空格</span></span><br><span class="line">    <span class="attr">&quot;javascript.format.insertSpaceBeforeFunctionParenthesis&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;vetur.format.defaultFormatterOptions&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;js-beautify-html&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;wrap_attributes&quot;</span>: <span class="string">&quot;force-aligned&quot;</span></span><br><span class="line">        <span class="comment">// #vue组件中html代码格式化样式</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;explorer.confirmDelete&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;git.enableSmartCommit&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;editor.fontSize&quot;</span>: <span class="number">13</span>,</span><br><span class="line">    <span class="attr">&quot;files.autoSaveDelay&quot;</span>: <span class="number">30000</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.activityBar.visible&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.statusBar.visible&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.sideBar.location&quot;</span>: <span class="string">&quot;left&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;breadcrumbs.enabled&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;editor.codeActionsOnSave&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;source.fixAll.eslint&quot;</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;octref.vetur&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;prettier.requirePragma&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;prettier.insertPragma&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.iconTheme&quot;</span>: <span class="string">&quot;material-icon-theme&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;editor.mouseWheelZoom&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.startupEditor&quot;</span>: <span class="string">&quot;newUntitledFile&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;window.zoomLevel&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="attr">&quot;[javascript]&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;liveServer.settings.donotShowInfoMsg&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;editor.quickSuggestions&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;strings&quot;</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;files.associations&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;*.cjson&quot;</span>: <span class="string">&quot;jsonc&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;*.wxss&quot;</span>: <span class="string">&quot;css&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;*.wxs&quot;</span>: <span class="string">&quot;javascript&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;emmet.includeLanguages&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;wxml&quot;</span>: <span class="string">&quot;html&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;[wxml]&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;qiu8310.minapp-vscode&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;[json]&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;vetur.format.defaultFormatter.html&quot;</span>: <span class="string">&quot;js-beautify-html&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;terminal.integrated.shell.windows&quot;</span>: <span class="string">&quot;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;editor.minimap.enabled&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;liveServer.settings.donotVerifyTags&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;[typescriptreact]&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;editor.defaultFormatter&quot;</span>: <span class="string">&quot;esbenp.prettier-vscode&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;editor.renderControlCharacters&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;editor.formatOnSave&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jixule.github.io/2020/11/19/ubuntu%E5%AE%89%E8%A3%85%E5%90%8E%E6%8D%A2%E9%98%BF%E9%87%8C%E4%BA%91%E6%BA%90%E3%80%81%E6%B8%85%E5%8D%8E%E6%BA%90%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="jxl">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/19/ubuntu%E5%AE%89%E8%A3%85%E5%90%8E%E6%8D%A2%E9%98%BF%E9%87%8C%E4%BA%91%E6%BA%90%E3%80%81%E6%B8%85%E5%8D%8E%E6%BA%90%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">ubuntu安装后换阿里云源、清华源方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-19 10:41:58 / 修改时间：10:42:33" itemprop="dateCreated datePublished" datetime="2020-11-19T10:41:58+08:00">2020-11-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="在ubuntu的使用过程中，有一些基本设置，记录在csdn方便查询。"><a href="#在ubuntu的使用过程中，有一些基本设置，记录在csdn方便查询。" class="headerlink" title="在ubuntu的使用过程中，有一些基本设置，记录在csdn方便查询。"></a>在ubuntu的使用过程中，有一些基本设置，记录在csdn方便查询。</h4><p> <strong>1.</strong> 在终端中输入<code>sudo su</code>，输入密码（不可见）</p>
+<p> <strong>2.</strong> 如果有vim或者vi可以跳过这一步，如果没有，输入<code>sudo apt install vim -y</code>安装vim</p>
+<p> <strong>3.</strong> 安装好后可以在终端中输入vim，回车，会显示vim的版本信息，输入<code>：q</code>退出到命令界面</p>
+<p> <strong>4.</strong> 修改apt的源列表，在终端中输入<code>vim /etc/apt/source.list </code>，查看本身的源，按d键删除整行，我一般是直接d不松删除全部，再按<code>i</code>，进入编辑模式，复制下列任意一个源进去：</p>
+<h4 id="阿里云"><a href="#阿里云" class="headerlink" title="阿里云"></a>阿里云</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<h4 id="清华大学"><a href="#清华大学" class="headerlink" title="清华大学"></a>清华大学</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<h4 id="中科大"><a href="#中科大" class="headerlink" title="中科大"></a>中科大</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<h4 id="网易"><a href="#网易" class="headerlink" title="网易"></a>网易</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.163.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<p><strong>5.</strong> 按下esc键退出编辑模式，再按下<code>：wq!</code>强制保存并退出</p>
+<p><strong>6.</strong> 在终端中输入<code>sudo apt update</code>更新软件</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://jixule.github.io/2020/11/19/Git%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -403,7 +737,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
